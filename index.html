@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiShop | Curated Minimalist Luxury Storefront</title>
+    <meta name="description" content="FlexiShop is a modern high-performance e-commerce catalog featuring instant filtering, live cart drawers, and local persistence.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <span>Flexi<span class="luxury-accent">Shop</span></span>
+            </a>
+            
+            <div class="nav-search-bar">
+                <input type="text" id="global-search" placeholder="Search curated collections...">
+                <i data-lucide="search" class="search-icon"></i>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#catalog" class="nav-link">Shop</a>
+                <a href="#about" class="nav-link">Our Story</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="cart-trigger" id="cart-trigger" aria-label="Open Cart">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-subtitle">Premium Objects</span>
+                    <h1>Curated Essentials For Modern Living</h1>
+                    <p class="hero-desc">
+                        A celebration of form, functionality, and organic textures. Each item is hand-selected and crafted to elevate your daily environment.
+                    </p>
+                    <a href="#catalog" class="btn btn-luxury">
+                        <span>Explore Collection</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-image-wrapper">
+                    <!-- Beautiful CSS visual representation of minimalist chair/lamp structure -->
+                    <div class="abstract-scene">
+                        <div class="scene-circle"></div>
+                        <div class="scene-blob"></div>
+                        <div class="scene-item-visual">
+                            <div class="lamp-shade"></div>
+                            <div class="lamp-stick"></div>
+                            <div class="lamp-base"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E-Commerce Workspace -->
+        <section class="catalog-section" id="catalog">
+            <div class="container">
+                <div class="catalog-layout">
+                    <!-- Filter Sidebar -->
+                    <aside class="filter-sidebar">
+                        <div class="filter-widget">
+                            <h3>Categories</h3>
+                            <ul class="category-list" id="category-list">
+                                <li class="category-item active" data-category="all">All Objects</li>
+                                <li class="category-item" data-category="lighting">Lighting</li>
+                                <li class="category-item" data-category="leather">Leather Goods</li>
+                                <li class="category-item" data-category="ceramics">Ceramics</li>
+                                <li class="category-item" data-category="accessories">Accessories</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="filter-widget">
+                            <h3>Filter By Price</h3>
+                            <div class="price-slider-container">
+                                <input type="range" id="price-range" min="10" max="300" value="300" class="slider">
+                                <div class="price-labels">
+                                    <span>$10</span>
+                                    <span>Max: $<span id="price-val">300</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-widget promo-widget">
+                            <h4>Special Offer</h4>
+                            <p>Free shipping worldwide on orders above $150. Code: <strong>MINIMAL</strong></p>
+                        </div>
+                    </aside>
+
+                    <!-- Product Grid -->
+                    <div class="product-grid-wrapper">
+                        <div class="grid-header">
+                            <span class="results-count" id="results-count">Showing 6 products</span>
+                            <div class="sort-selector">
+                                <label for="sort-select">Sort:</label>
+                                <select id="sort-select">
+                                    <option value="featured">Featured</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="product-grid" id="product-grid">
+                            <!-- Dynamic Products Injected via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container about-container">
+                <div class="about-text">
+                    <span class="section-subtitle">Crafted Story</span>
+                    <h2>Designed to Last Generations</h2>
+                    <p>
+                        We partner with local independent artisans from Copenhagen to Kyoto. Using only sustainable and naturally-sourced materials, we ensure each object holds its value and character over decades of everyday use.
+                    </p>
+                </div>
+                <div class="features-row">
+                    <div class="story-badge">
+                        <i data-lucide="truck"></i>
+                        <h5>Carbon Neutral Shipping</h5>
+                    </div>
+                    <div class="story-badge">
+                        <i data-lucide="check-circle"></i>
+                        <h5>Handcrafted Excellence</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Side Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Shopping Cart (<span id="cart-count-drawer">0</span>)</h3>
+            <button class="cart-close" id="cart-close" aria-label="Close Cart">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        
+        <!-- Cart Items Container -->
+        <div class="cart-items" id="cart-items">
+            <!-- Dynamic Cart Items Injected via JS -->
+            <div class="empty-cart-message">
+                <i data-lucide="shopping-bag" class="empty-icon"></i>
+                <p>Your shopping bag is empty.</p>
+                <a href="#catalog" class="btn btn-luxury btn-sm" id="empty-cart-shop-btn">Shop Collection</a>
+            </div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Shipping</span>
+                <span id="cart-shipping">Calculated at checkout</span>
+            </div>
+            <hr class="cart-divider">
+            <div class="summary-line total">
+                <span>Total</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn btn-luxury btn-full" id="checkout-btn" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-overlay">
+        <div class="modal-container">
+            <button class="modal-close" id="checkout-close" aria-label="Close Checkout">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="checkout-modal-content">
+                <h2>Complete Your Order</h2>
+                <p class="modal-subtitle">Secure, fast, and instant checkout demo.</p>
+                
+                <form id="checkout-form">
+                    <div class="form-section">
+                        <h4>1. Shipping Address</h4>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" required placeholder="Amr">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" required placeholder="Khaled">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" required placeholder="128 Luxury Ave">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-2">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required placeholder="Cairo">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="zipcode">Zip Code</label>
+                                <input type="text" id="zipcode" required placeholder="11511">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>2. Payment Details</h4>
+                        <div class="form-group">
+                            <label for="card-num">Card Number</label>
+                            <div class="input-icon-wrapper">
+                                <input type="text" id="card-num" required placeholder="4000 1234 5678 9010" pattern="[0-9\s]{13,19}">
+                                <i data-lucide="credit-card"></i>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-1">
+                                <label for="card-exp">Expiry Date</label>
+                                <input type="text" id="card-exp" required placeholder="MM/YY">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="card-cvc">CVC</label>
+                                <input type="text" id="card-cvc" required placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-luxury btn-full" id="place-order-btn">
+                        <span>Place Order — <span id="checkout-total-btn">$0.00</span></span>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Success Overlay inside Modal -->
+            <div class="checkout-success-view" id="checkout-success-view">
+                <i data-lucide="check-circle" class="success-icon"></i>
+                <h2>Thank You for Your Order!</h2>
+                <p>Your order has been simulated successfully. We've cleared your local shopping cart storage.</p>
+                <div class="order-summary-box">
+                    <p>Order ID: <strong id="order-id-val">#FL-89301</strong></p>
+                    <p>Amount Paid: <strong id="order-total-val">$0.00</strong></p>
+                </div>
+                <button class="btn btn-luxury" id="success-close-btn">Return to Shop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <span class="nav-logo">Flexi<span class="luxury-accent">Shop</span></span>
+                <p>Premium essentials designed with visual longevity in mind.</p>
+            </div>
+            <div class="footer-links-col">
+                <h4>Collections</h4>
+                <a href="#catalog">Lighting</a>
+                <a href="#catalog">Leather Goods</a>
+                <a href="#catalog">Ceramics</a>
+            </div>
+            <div class="footer-links-col">
+                <h4>Support</h4>
+                <a href="#">Shipping FAQ</a>
+                <a href="#">Returns Portal</a>
+                <a href="#about">Story & Sustainability</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 FlexiShop Studio. All rights reserved.</p>
+            <p>Designed for Amr Khaled Portfolio Showcase</p>
+        </div>
+    </footer>
+
+    <!-- AI Stylist Chat Trigger -->
+    <button class="ai-stylist-trigger" id="ai-stylist-trigger" aria-label="Open AI Stylist">
+        <i data-lucide="sparkles"></i>
+        <span>AI Stylist</span>
+    </button>
+
+    <!-- AI Stylist Chat Window -->
+    <div class="ai-stylist-window" id="ai-stylist-window">
+        <div class="ai-stylist-header">
+            <div class="stylist-info">
+                <span class="stylist-avatar">AI</span>
+                <div>
+                    <h4>AI Stylist Assistant</h4>
+                    <span class="stylist-status">Online</span>
+                </div>
+            </div>
+            <button class="ai-stylist-close" id="ai-stylist-close" aria-label="Close AI Stylist">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        
+        <div class="ai-stylist-messages" id="ai-stylist-messages">
+            <div class="message incoming">
+                <p>Hello! I am your personal AI Stylist. I can recommend premium objects based on your design preferences, budget, or spacing needs.</p>
+            </div>
+            <div class="message incoming">
+                <p>What are you looking to decorate or find today?</p>
+            </div>
+        </div>
+        
+        <div class="ai-stylist-chips">
+            <button class="chip-btn" onclick="sendStylistPrompt('Find minimalist lighting')">Minimalist Lighting</button>
+            <button class="chip-btn" onclick="sendStylistPrompt('Show leather goods')">Leather Goods</button>
+            <button class="chip-btn" onclick="sendStylistPrompt('Gifts under $100')">Under $100</button>
+        </div>
+        
+        <div class="ai-stylist-input-area">
+            <input type="text" id="ai-stylist-input" placeholder="Ask about categories, prices, or vibes...">
+            <button type="button" id="ai-stylist-send" aria-label="Send message">
+                <i data-lucide="send"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- App JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
